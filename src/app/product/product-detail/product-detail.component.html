@@ -1,0 +1,53 @@
+
+<div class='panel panel-primary' *ngIf='product && product!==null'>
+
+  <div class='panel-heading' style='font-size:large'>
+	<!-- display name of product here -->
+    Details of: &nbsp;&nbsp;
+    <a class='btn btn-primary' style='width:80px;float:right'>
+      Edit
+    </a>
+  </div>
+
+  <div class='panel-body'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='row'>
+          <div class='col-md-3'>Name:{{product.productName}}</div>
+          <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3'>Code:</div>
+          <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3'>Description:</div>
+          <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3'>Availability:</div>
+          <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3'>Price:</div>
+
+          <div class='col-md-6'></div>
+        </div>
+        <div class='row'>
+          <div class='col-md-3'>5 Star Rating:</div>
+          <div class='col-md-6'></div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <!-- product image here -->
+      </div>
+    </div>
+  </div>
+
+  <div class='panel-footer'>
+    <a class='btn btn-default' style='width:80px'>
+      <i class='glyphicon glyphicon-chevron-left'></i> Back
+    </a>
+  </div>
+</div>

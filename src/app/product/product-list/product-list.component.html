@@ -1,0 +1,97 @@
+
+<div class="panel panel-primary">
+  <!-- design for no of products -->
+  &nbsp;
+  <div class="panel panel-heading">
+Showing &nbsp; <span *ngIf="products">{{ products.length }} Products</span>
+  </div>
+
+  <div class="panel panel-body">
+
+    <div class="row">
+		<!-- design for filter by text-->
+      <div class="col-md-2">
+        Filter By &nbsp; {{filterText}}
+      </div>
+		<!-- design for textbox -->
+      <div class="col-md-4">
+        <input type="text"  [(ngModel)]="filterText"
+         #txtVal>
+      </div>
+		<!-- design for sort by text -->
+      <div class="col-md-2">
+      Sort By : &nbsp;
+      </div>
+      <!-- div for dropdown -->
+      <div class="col-md-4" *ngIf="productProperties" >
+        <select name="ddlCriteria" >
+          <option value="" disabled>--Select--</option>
+          <option *ngFor="let key of productProperties" value="{{key}}">{{key}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+  <!-- alternate design -->
+  <!-- if your html doesnt load on time , then we can use this ng-template directive to show temporatry msg -->
+  <div>No products to display</div>
+  <ng-template>
+
+  </ng-template>
+    <div class="table-responsive" *ngIf="products;else alternate">
+      <table class="table">
+        <thead style="background-color: burlywood">
+          <tr>
+    <!-- add button here -->
+ 
+         
+            
+            <th> 
+              
+                <button *ngIf="!showImage" (click)="showProductImage();" class="btn btn-primary">Show Image!</button>
+                <button  *ngIf="showImage" (click)="hideProductImage();" class="btn btn-primary">Hide Image!</button>
+        
+             </th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Availability</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products | filterProduct : filterText">
+              <!-- add alternate design here too -->
+              <ng-template #imageAlternate>
+                  <span>Click the button above to display</span>
+                </ng-template>
+            <td>
+		<!-- image here -->
+              <div *ngIf="showImage;else imageAlternate">
+                <span>
+                  <img class="eye-image" *ngIf="!showImage" (click)="showProductImage();" src="./assets/images/showImage.jpg">
+                  <img class="eye-image" *ngIf="showImage" (click)="hideProductImage();" src="./assets/images/showImage.jpg">
+                </span>&nbsp;<img src={{product.imageUrl}}
+                  class="product-image" [routerLink]="['/product',product.productId]">
+              </div>
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.starRating}}</td>
+            <td>
+              <spp-star [rating]="product.starRating">
+
+              </spp-star>
+            </td>
+            <td>
+              <img class="delete-image" src="../assets/images/delete.png" (click)="removeProduct(product.productId)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
